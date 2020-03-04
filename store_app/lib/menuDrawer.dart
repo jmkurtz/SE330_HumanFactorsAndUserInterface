@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/cartPage.dart';
 import 'package:store_app/homepage.dart';
 import 'package:store_app/searchPage.dart';
 import 'package:store_app/sellPage.dart';
@@ -48,6 +49,15 @@ class _MenuDrawerState extends State<MenuDrawer> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyHomePage(title: 'Homepage')),
+                );
+              }
+            ),
+            ListTile(
+              title: Text('Cart'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CartPage(title: 'Cart')),
                 );
               }
             ),
