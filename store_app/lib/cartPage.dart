@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:store_app/databaseHelper.dart';
 import 'package:store_app/menuDrawer.dart';
-import 'package:sqflite/sqflite.dart';
 
 class CartPage extends StatefulWidget {
   CartPage({Key key, this.title}) : super(key: key);
@@ -28,6 +27,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   
   List<CartItem> cartItems;
+  var database = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +58,11 @@ class _CartPageState extends State<CartPage> {
                       itemBuilder: (context, index) {
                         CartItem item = snapshot.data[index];
                         return ListTile(
-                          leading: IconButton(icon: Icon(Icons.edit), onPressed: null),
-                          title: Text(item.itemName, style: TextStyle(fontSize: 16),),
-                          subtitle: Text("Price: ${item.unitPrice} x ${item.quantity}", style: TextStyle(fontSize: 14),),
+                          leading: Image(image: new AssetImage(item.imagePath)),
+                          title: Text(item.itemName, style: TextStyle(fontSize: 24),),
+                          subtitle: Text("Price: ${item.unitPrice} x ${item.quantity}", style: TextStyle(fontSize: 18),),
                           trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
-                            DatabaseHelper.instance.deleteItemById(item.id);
+                            database.deleteItemById(item.id);
                             setState(() {
                               _updateCart();
                             });
@@ -92,7 +92,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   Future _updateCart() async {
-    cartItems = await DatabaseHelper.instance.getCart();
+    cartItems = await database.getCart();
     return cartItems;
   }
   
@@ -101,18 +101,18 @@ class _CartPageState extends State<CartPage> {
       itemName: "Sonic Poster",
       unitPrice: 14.99,
       quantity: Random().nextInt(20),
-      imagePath: "assets/images/sonic.png",
+      imagePath: "assets/posters/sonicthehedgehogposter.jpg",
     );
 
-    DatabaseHelper.instance.insertItem(inItem);
-    cartItems = await DatabaseHelper.instance.getCart();
+    database.insertItem(inItem);
+    //cartItems = await database.getCart();
   }
 
   void _deleteAll() async {
     List<CartItem> items = await DatabaseHelper.instance.getCart();
 
     for (int i =0; i < items.length; i++) {
-      DatabaseHelper.instance.deleteItemByItem(items[i]);
+      database.deleteItemByItem(items[i]);
     }
   }
 
