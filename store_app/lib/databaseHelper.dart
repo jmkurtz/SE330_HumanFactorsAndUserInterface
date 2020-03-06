@@ -29,6 +29,8 @@ class CartItem {
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+
+  factory DatabaseHelper() => instance;
   
   static final _dbName = "cart.db";
   static final _dbVersion = 1;
