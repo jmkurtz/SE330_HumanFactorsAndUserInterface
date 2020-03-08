@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:store_app/Helpers/databaseHelper.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 
+import 'billingPage.dart';
+
 class CartPage extends StatefulWidget {
   CartPage({Key key, this.title}) : super(key: key);
 
@@ -46,6 +48,17 @@ class _CartPageState extends State<CartPage> {
                 });
               },
               child: Text('Insert', style: TextStyle(fontSize: 16),),
+            ),
+          ),
+          Container(
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BillingPage(title: 'Billing', payload: '\$10.23',)),);
+              },
+              color: Theme.of(context).primaryColor,
+              textColor: Colors.white,
+              child: Text('Confirm Purchase'),
             ),
           ),
           Expanded(

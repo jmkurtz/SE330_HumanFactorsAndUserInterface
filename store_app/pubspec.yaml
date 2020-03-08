@@ -27,6 +27,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   sqflite: ^1.2.0
   path_provider: ^1.5.1
+  flutter_local_notifications: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -40,7 +41,9 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/movieLogo.png
+    - assets/images/billing.png
     - assets/images/contactUs.jpg
+    - assets/images/shipping.jpg
     - assets/posters/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
