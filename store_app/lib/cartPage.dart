@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:store_app/databaseHelper.dart';
-import 'package:store_app/menuDrawer.dart';
+import 'package:store_app/Helpers/databaseHelper.dart';
+import 'package:store_app/Widgets/menuDrawer.dart';
 
 class CartPage extends StatefulWidget {
   CartPage({Key key, this.title}) : super(key: key);

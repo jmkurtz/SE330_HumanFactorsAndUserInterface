@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/menuDrawer.dart';
+import 'package:store_app/Helpers/notificationHelper.dart';
+import 'package:store_app/Widgets/menuDrawer.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key key, this.title}) : super(key: key);
@@ -20,6 +21,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  var notifications = NotificationHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,16 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Center(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const RaisedButton(
+              onPressed: null,
+              child: Text(
+                'Push Notifications',
+                style: TextStyle(fontSize: 20)
+              ),
+            ),
+          ]
         ),
       ),
       drawer: MenuDrawer()
