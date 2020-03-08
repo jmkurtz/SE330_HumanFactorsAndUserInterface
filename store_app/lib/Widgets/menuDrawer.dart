@@ -5,23 +5,12 @@ import 'package:store_app/searchPage.dart';
 import 'package:store_app/sellPage.dart';
 import 'package:store_app/settingsPage.dart';
 
-import 'aboutUsPage.dart';
-import 'contactUsPage.dart';
+import '../aboutUsPage.dart';
+import '../contactUsPage.dart';
 
 class MenuDrawer extends StatefulWidget {
-  MenuDrawer({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+  MenuDrawer({Key key}) : super(key: key);
+  
   @override
   _MenuDrawerState createState() => _MenuDrawerState();
 }
