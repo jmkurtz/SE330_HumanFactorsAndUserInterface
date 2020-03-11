@@ -3,7 +3,7 @@ import 'package:store_app/Widgets/menuDrawer.dart';
 import 'package:store_app/homePage.dart';
 
 class ConfirmationPage extends StatefulWidget {
-  ConfirmationPage({Key key, this.title}) : super(key: key);
+  ConfirmationPage({Key key, @required this.title}) : super(key: key);
 
   final String title;
 

@@ -17,8 +17,8 @@ NotificationDetails get _ongoing {
 
 class NotificationsHelper{
   
-  var notificationsOnOff = true;
-  var scheduled = true;
+  static var notificationsOnOff = true;
+  static var scheduledOnOff = true;
 
   Future showOngoingNotification(
     FlutterLocalNotificationsPlugin notifications, {
@@ -35,14 +35,15 @@ class NotificationsHelper{
       int id = 0
     }) => notifications.show(id, title, body, type);
 
-  flipDealNotifier() async {
+  static scheduledNotification() async {
     var notifications = FlutterLocalNotificationsPlugin();
 
-    var scheduledNotifiactionDateTime = DateTime.now().add(Duration(seconds: 15));
+    //var scheduledNotifiactionDateTime = DateTime.now().add(Duration(seconds: 15));
     var androidPlatformChannelSpecifies = AndroidNotificationDetails('your other channel id', 'your other channel name', 'your other channel description');
     var iOSPlatformChannelSpecifies = IOSNotificationDetails();
     NotificationDetails platformChannelSpecifies = NotificationDetails(androidPlatformChannelSpecifies, iOSPlatformChannelSpecifies);
-    await notifications.schedule(0, "title", "body", scheduledNotifiactionDateTime, platformChannelSpecifies);
+    if(scheduledOnOff)
+      await notifications.periodicallyShow(0, "Movie Posters Unlimited", "NEW SALE: 20% all action films", RepeatInterval.EveryMinute, platformChannelSpecifies);
   }
 }
 

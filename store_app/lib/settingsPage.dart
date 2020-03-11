@@ -4,19 +4,8 @@ import 'package:store_app/Helpers/notificationHelper.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 import 'package:store_app/confirmationPage.dart';
 
-import 'homePage.dart';
-
 class SettingsPage extends StatefulWidget {
-  SettingsPage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  SettingsPage({Key key, @required this.title}) : super(key: key);
 
   final String title;
 
@@ -63,10 +52,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 children: [
                   Text('Purchase Confirmation Notifications'),
                   Switch(
-                    value: notificationsHelper.notificationsOnOff,
+                    value: NotificationsHelper.notificationsOnOff,
                     onChanged: (value) {
                       setState(() {
-                        notificationsHelper.notificationsOnOff = value;
+                        NotificationsHelper.notificationsOnOff = value;
                       });
                     },
                     activeTrackColor: Theme.of(context).primaryColor,
@@ -82,10 +71,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 children: [
                   Text('Scheduled Notifications'),
                   Switch(
-                    value: notificationsHelper.scheduled,
+                    value: NotificationsHelper.scheduledOnOff,
                     onChanged: (value) {
                       setState(() {
-                        notificationsHelper.scheduled = value;
+                        NotificationsHelper.scheduledOnOff = value;
                       });
                     },
                     activeTrackColor: Theme.of(context).primaryColor,

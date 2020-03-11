@@ -10,7 +10,7 @@ import 'confirmationPage.dart';
 import 'homePage.dart';
 
 class ShippingPage extends StatefulWidget {
-  ShippingPage({Key key, @required this.payload, this.title}) : super(key: key);
+  ShippingPage({Key key, @required this.totalPrice, @required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -22,7 +22,7 @@ class ShippingPage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  final String payload;
+  final String totalPrice;
 
   @override
   _ShippingPageState createState() => _ShippingPageState();
@@ -108,7 +108,7 @@ class _ShippingPageState extends State<ShippingPage> {
                     padding: const EdgeInsets.symmetric( vertical: 16.0 ),
                     child: RaisedButton(
                       onPressed: () {
-                        notificationsHelper.showOngoingNotification(notifications, title: 'Purchase Confirmation', body: 'Your purchase total is ${widget.payload}.');
+                        notificationsHelper.showOngoingNotification(notifications, title: 'Purchase Confirmation', body: 'Your purchase total is ${widget.totalPrice}.');
                         Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ConfirmationPage(title: 'Confirmation')),
                         );

@@ -8,7 +8,7 @@ import 'Widgets/Inputs/inputBox.dart';
 import 'homePage.dart';
 
 class BillingPage extends StatefulWidget {
-  BillingPage({Key key, @required this.payload, this.title}) : super(key: key);
+  BillingPage({Key key, @required this.totalPrice, @required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -20,7 +20,7 @@ class BillingPage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  final String payload;
+  final String totalPrice;
 
   @override
   _BillingPageState createState() => _BillingPageState();
@@ -49,7 +49,7 @@ class _BillingPageState extends State<BillingPage> {
                       '___________________________________________________', textAlign: TextAlign.center,),),
                   new Padding(padding: EdgeInsets.only(top: 5),),
                   new Container( width: 325, child: new Text(
-                      'Your total is ${widget.payload}',  textAlign: TextAlign.center,),),
+                      'Your total is ${widget.totalPrice}',  textAlign: TextAlign.center,),),
                   new Container( width: 325, child: new Text(
                       'Please enter your billing information',  textAlign: TextAlign.center,),),
                   new Container( width: 325, child: new Text(
@@ -78,7 +78,7 @@ class _BillingPageState extends State<BillingPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ShippingPage(title: 'Shipping', payload: '\$10.23',)),
+                          MaterialPageRoute(builder: (context) => ShippingPage(title: 'Shipping', totalPrice: '\$10.23',)),
                         );
                       },
                       color: Theme.of(context).primaryColor,

@@ -87,7 +87,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
               }
             ),
             ListTile(
-              title: Text('Setting'),
+              title: Text('Settings'),
               onTap: () {
                 Navigator.push(
                   context,

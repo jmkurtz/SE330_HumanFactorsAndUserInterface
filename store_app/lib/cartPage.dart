@@ -7,19 +7,9 @@ import 'package:store_app/Widgets/menuDrawer.dart';
 import 'billingPage.dart';
 
 class CartPage extends StatefulWidget {
-  CartPage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  CartPage({Key key, @required this.title}) : super(key: key);
 
   final String title;
-
 
   @override
   _CartPageState createState() => _CartPageState();
@@ -54,7 +44,7 @@ class _CartPageState extends State<CartPage> {
             child: RaisedButton(
               onPressed: () {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => BillingPage(title: 'Billing', payload: '\$10.23',)),);
+                  MaterialPageRoute(builder: (context) => BillingPage(title: 'Billing', totalPrice: '\$10.23',)),);
               },
               color: Theme.of(context).primaryColor,
               textColor: Colors.white,
