@@ -69,10 +69,12 @@ class _ContactUsPageState extends State<ContactUsPage> {
                     padding: const EdgeInsets.symmetric( vertical: 16.0 ),
                     child: RaisedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyHomePage(title: 'Homepage')),
+                        if(_formKey.currentState.validate()){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MyHomePage(title: 'Homepage')),
                         );
+                        }
                       },
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,

@@ -27,7 +27,6 @@ class BillingPage extends StatefulWidget {
 }
 
 class _BillingPageState extends State<BillingPage> {
-
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
@@ -55,31 +54,55 @@ class _BillingPageState extends State<BillingPage> {
                   new Container( width: 325, child: new Text(
                       '___________________________________________________', textAlign: TextAlign.center,),),
                   new Padding(padding: EdgeInsets.only(top: 30),),
-                  InputBox(
-                    hintText: "Enter the name", 
-                    labelText: "Name", 
-                    errorText: "Please enter the name on the card",
+                  new Container( width: 325, child: 
+                    new TextFormField(
+                      decoration: new InputDecoration(labelText: 'Name', hintText: 'Enter the name', fillColor: Colors.white,
+                        border: new OutlineInputBorder(borderRadius: new BorderRadius.circular(25.0), borderSide: BorderSide(),),),
+                      validator: (value) {
+                        if(value.isEmpty){
+                          return 'Please enter the name on the card';
+                        }
+                        return null;
+                      },
+                    )
                   ),
                   new Padding(padding: EdgeInsets.only(top: 30),),
-                  InputBox(
-                    hintText: "Enter your credit card number", 
-                    labelText: "Card No.", 
-                    errorText: "Please enter in a credit card number",
+                  new Container( width: 325, child: 
+                    new TextFormField(
+                      decoration: new InputDecoration(labelText: 'Card No.', hintText: 'Enter your credit card number', fillColor: Colors.white,
+                        border: new OutlineInputBorder(borderRadius: new BorderRadius.circular(25.0), borderSide: BorderSide(),),),
+                      validator: (value) {
+                        if(value.isEmpty || value.length != 16){
+                          return "Please enter a valid credit card number";
+                        }
+                        return null;
+                      },
+                      maxLength: 16,
+                      keyboardType: TextInputType.number,
+                    )
                   ),
-                  new Padding(padding: EdgeInsets.only(top: 30),),
-                  InputBox(
-                    hintText: "Enter your CVV number", 
-                    labelText: "CVV", 
-                    errorText: "Please enter in a valid CVV",
+                  new Padding(padding: EdgeInsets.only(top: 15),),
+                  new Container( width: 325, child: 
+                    new TextFormField(
+                      decoration: new InputDecoration(labelText: 'CVV', hintText: 'Enter your CVV number', fillColor: Colors.white,
+                        border: new OutlineInputBorder(borderRadius: new BorderRadius.circular(25.0), borderSide: BorderSide(),),),
+                      validator: (value) {
+                        if(value.isEmpty || value.length != 3){
+                          return 'Please enter in a valid CVV';
+                        }
+                        return null;
+                      },
+                      maxLength: 3,
+                      keyboardType: TextInputType.number,
+                    )
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric( vertical: 16.0 ),
                     child: RaisedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ShippingPage(title: 'Shipping', totalPrice: '\$10.23',)),
-                        );
+                      onPressed:() async{
+                        if(_formKey.currentState.validate()){
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => ShippingPage(title: 'Shipping', totalPrice: '\$10.23',)),);
+                        }
                       },
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,

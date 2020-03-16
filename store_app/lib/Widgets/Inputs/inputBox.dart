@@ -13,26 +13,22 @@ class InputBox extends StatefulWidget {
 }
 
 class _InputBoxState extends State<InputBox> {
+  String value;
+
   @override
   Widget build(BuildContext context) {
     return new Container(
       width: widget.width,
       child: new TextFormField(
-        decoration: new InputDecoration(
-          labelText: widget.labelText,
-          hintText: widget.hintText,
-          fillColor: Colors.white,
-          border: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(25.0),
-            borderSide: BorderSide(),
-          ),
-        ),
+        decoration: new InputDecoration(labelText: widget.labelText, hintText: widget.hintText, fillColor: Colors.white,
+          border: new OutlineInputBorder(borderRadius: new BorderRadius.circular(25.0), borderSide: BorderSide(),),),
         validator: (value) {
           if(value.isEmpty){
             return widget.errorText;
           }
           return null;
         },
+        initialValue: value,
       )
     );
   }

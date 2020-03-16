@@ -14,31 +14,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final notifications = FlutterLocalNotificationsPlugin();
-  final notificationsHelper = NotificationsHelper();
-
-
-  @override
-  void initState() {
-    super.initState();
-
-    final settingAndroid = AndroidInitializationSettings('app_icon');
-    final settingIOS = IOSInitializationSettings(
-      onDidReceiveLocalNotification: (id, title, body, payload) =>
-        onSelectNotification(payload));
-
-    notifications.initialize(
-      InitializationSettings(settingAndroid, settingIOS),
-      onSelectNotification: onSelectNotification);
-    
-    //NotificationsHelper.scheduledNotification();
-  }
-
-  Future onSelectNotification(String payload) => Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => SellPage(title: 'Sale')),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

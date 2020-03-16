@@ -64,25 +64,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 ]
               ),
             ),
-            new Container(
-              width: 325,
-              child: new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Scheduled Notifications'),
-                  Switch(
-                    value: NotificationsHelper.scheduledOnOff,
-                    onChanged: (value) {
-                      setState(() {
-                        NotificationsHelper.scheduledOnOff = value;
-                      });
-                    },
-                    activeTrackColor: Theme.of(context).primaryColor,
-                    activeColor: Colors.lightGreen,
-                  )
-                ]
-              ),
-            )
           ]
         ),
       ),

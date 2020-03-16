@@ -27,7 +27,7 @@ class _EmailBoxState extends State<EmailBox> {
           ),
         ),
         validator: (value) {
-          if(value.isEmpty){
+          if(value.isEmpty || !value.contains('@')){
             return widget.errorText;
           }
           return null;

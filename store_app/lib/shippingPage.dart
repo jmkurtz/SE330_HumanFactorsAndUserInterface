@@ -99,19 +99,29 @@ class _ShippingPageState extends State<ShippingPage> {
                     errorText: "Please enter a state",
                   ),
                   new Padding(padding: EdgeInsets.only(top: 30),),
-                  InputBox(
-                    hintText: "Enter the zip code", 
-                    labelText: "Zip Code", 
-                    errorText: "Please enter a zip code",
+                  new Container( width: 325, child: 
+                    new TextFormField(
+                      decoration: new InputDecoration(labelText: 'Zip Code', hintText: 'Enter the zip code', fillColor: Colors.white,
+                        border: new OutlineInputBorder(borderRadius: new BorderRadius.circular(25.0), borderSide: BorderSide(),),),
+                      validator: (value) {
+                        if(value.isEmpty){
+                          return 'Please enter a zip code';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.number,
+                    )
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric( vertical: 16.0 ),
                     child: RaisedButton(
                       onPressed: () {
-                        notificationsHelper.showOngoingNotification(notifications, title: 'Purchase Confirmation', body: 'Your purchase total is ${widget.totalPrice}.');
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ConfirmationPage(title: 'Confirmation')),
-                        );
+                        if(_formKey.currentState.validate()){
+                          notificationsHelper.showOngoingNotification(notifications, title: 'Purchase Confirmation', body: 'Your purchase total is ${widget.totalPrice}.');
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => ConfirmationPage(title: 'Confirmation')),
+                          );
+                        }
                       },
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,
