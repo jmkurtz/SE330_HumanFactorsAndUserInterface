@@ -4,6 +4,8 @@ import 'package:store_app/Helpers/notificationHelper.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 import 'package:store_app/confirmationPage.dart';
 
+import 'cartPage.dart';
+
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key key, @required this.title}) : super(key: key);
 
@@ -39,7 +41,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title)
+        title: Text(widget.title),
+        actions: <Widget>[IconButton(icon: Icon(Icons.shopping_cart), onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(title: 'Shopping Cart')));},),],
       ),
       body: Center(
         child: Column(

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:store_app/Helpers/notificationHelper.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
-import 'package:store_app/sellPage.dart';
+
+import 'cartPage.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, @required this.title}) : super(key: key);
@@ -18,7 +17,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title)
+        title: Text(widget.title),
+        actions: <Widget>[IconButton(icon: Icon(Icons.shopping_cart), onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(title: 'Shopping Cart')));},),],
       ),
       body: Center(
         child: Column(

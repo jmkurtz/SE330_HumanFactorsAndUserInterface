@@ -4,6 +4,7 @@ import 'package:store_app/Widgets/menuDrawer.dart';
 import 'Widgets/Inputs/descriptionBox.dart';
 import 'Widgets/Inputs/emailBox.dart';
 import 'Widgets/Inputs/inputBox.dart';
+import 'cartPage.dart';
 import 'homePage.dart';
 
 class ContactUsPage extends StatefulWidget {
@@ -21,7 +22,8 @@ class _ContactUsPageState extends State<ContactUsPage> {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title)
+        title: Text(widget.title),
+        actions: <Widget>[IconButton(icon: Icon(Icons.shopping_cart), onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(title: 'Shopping Cart')));},),],
       ),
       body: SingleChildScrollView(
         child: Center(

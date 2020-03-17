@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 import 'package:store_app/homePage.dart';
 
+import 'cartPage.dart';
+
 class ConfirmationPage extends StatefulWidget {
   ConfirmationPage({Key key, @required this.title}) : super(key: key);
 
@@ -17,7 +19,8 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title)
+        title: Text(widget.title),
+        actions: <Widget>[IconButton(icon: Icon(Icons.shopping_cart), onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(title: 'Shopping Cart')));},),],
       ),
       body: Center(
         child: Column(
