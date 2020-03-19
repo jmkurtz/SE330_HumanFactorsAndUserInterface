@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/Helpers/databaseHelper.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 
+import 'Helpers/itemModel.dart';
 import 'billingPage.dart';
 
 class CartPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   
-  List<CartItem> cartItems;
+  List<Item> cartItems;
   var database = DatabaseHelper();
 
   @override
@@ -59,7 +60,7 @@ class _CartPageState extends State<CartPage> {
                     return ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        CartItem item = snapshot.data[index];
+                        Item item = snapshot.data[index];
                         return ListTile(
                           leading: Image(image: new AssetImage(item.imagePath)),
                           title: Text(item.itemName, style: TextStyle(fontSize: 24),),
@@ -84,35 +85,33 @@ class _CartPageState extends State<CartPage> {
               ),
           ),
         ],
-        
       ),
-
-      
       drawer: MenuDrawer()
-
-      
     );
   }
 
   Future _updateCart() async {
-    cartItems = await database.getCart();
+    cartItems = await database.getCartItems();
     return cartItems;
   }
   
   void _insert() async {
-    var inItem = new CartItem(
+    var inItem = new Item(
       itemName: "Sonic Poster",
       unitPrice: 14.99,
       quantity: Random().nextInt(20),
-      imagePath: "assets/posters/sonicthehedgehogposter.jpg",
+      description: "Sonic tries to navigate the complexities of life on Earth with his newfound best friend -- a human named Tom Wachowski. They must soon join forces to prevent the evil Dr. Robotnik from capturing Sonic and using his powers for world domination.",
+      genre: 'action',
+      isVerified: true,
+      isUsed: false,
+      imagePath: "assets/posters/sonic_the_hedgehog.jpg",
     );
 
     database.insertItem(inItem);
-    //cartItems = await database.getCart();
   }
 
   void _deleteAll() async {
-    List<CartItem> items = await DatabaseHelper.instance.getCart();
+    List<Item> items = await DatabaseHelper.instance.getCartItems();
 
     for (int i =0; i < items.length; i++) {
       database.deleteItemByItem(items[i]);

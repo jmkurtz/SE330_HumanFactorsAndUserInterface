@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/Helpers/mockData.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 
 import 'cartPage.dart';
@@ -13,6 +14,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState(){
+    MockData.seedMockData();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

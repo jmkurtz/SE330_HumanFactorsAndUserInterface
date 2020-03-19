@@ -1,30 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
-//import 'dart:html';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
-class CartItem {
-  int id;
-  final String itemName;
-  final double unitPrice;
-  final int quantity;
-  final String imagePath;
-
-  CartItem({this.id, this.itemName, this.unitPrice, this.quantity, this.imagePath});
-
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'itemName': itemName,
-      'unitPrice': unitPrice,
-      'quantity': quantity,
-      'imagePath': imagePath,
-    };
-  }
-
-}
+import 'itemModel.dart';
 
 class DatabaseHelper {
   DatabaseHelper._privateConstructor();
@@ -34,12 +12,10 @@ class DatabaseHelper {
   
   static final _dbName = "cart.db";
   static final _dbVersion = 1;
-
   static final _tableName = "cart";
 
   static Database _database;
   Future<Database> get database async {
-    //log(_database.toString());
     if (_database != null) {
       return _database;
     }
@@ -59,28 +35,13 @@ class DatabaseHelper {
 
   Future onDbCreate(Database db, int version) async {
     return db.execute(
-      "CREATE TABLE ${_tableName}(id INTEGER PRIMARY KEY AUTOINCREMENT, itemName TEXT NOT NULL, unitPrice REAL NOT NULL, quantity INT NOT NULL, imagePath TEXT)",
+      "CREATE TABLE $_tableName(id INTEGER PRIMARY KEY AUTOINCREMENT, itemName TEXT NOT NULL, unitPrice REAL NOT NULL, quantity INT NOT NULL, imagePath TEXT)",
     );
   }
 
-  Future<int> insertItem(CartItem item) async {
+  Future<int> insertItem(Item item) async {
     String path = join(await getDatabasesPath(), _dbName);
-    //log(path);
-    
     final db = await instance.database;
-
-    /*
-    final result = await db.rawQuery('SELECT COUNT(*) FROM ${_tableName}');
-    if (result == null) {
-      item.id = 0;
-    }
-    else {
-      final count = Sqflite.firstIntValue(result);
-
-      item.id = count;
-    }
-    */
-    
 
     return await db.insert(
       _tableName, 
@@ -89,26 +50,28 @@ class DatabaseHelper {
     );
   }
 
-  Future<List<CartItem>> getCart() async {
+  Future<List<Item>> getCartItems() async {
     final db = await instance.database;
+    final List<Map<String, dynamic>> items = await db.query(_tableName);
 
-    final List<Map<String, dynamic>> cartItems = await db.query(_tableName);
-
-    return List.generate(cartItems.length, (i) {
-        return CartItem(
-          id: cartItems[i]['id'],
-          itemName: cartItems[i]['itemName'],
-          unitPrice: cartItems[i]['unitPrice'],
-          quantity: cartItems[i]['quantity'],
-          imagePath: cartItems[i]['imagePath'],
+    return List.generate(items.length, (i) {
+        return Item(
+          id: items[i]['id'],
+          itemName: items[i]['itemName'],
+          unitPrice: items[i]['unitPrice'],
+          quantity: items[i]['quantity'],
+          description: items[i]['description'],
+          genre: items[i]['genre'],
+          isUsed: items[i]['isUsed'],
+          isVerified: items[i]['isVerified'],
+          imagePath: items[i]['imagePath'],
         );
       }
     );
   }
 
-  Future<void> updateItem(CartItem item) async {
+  Future<void> updateItem(Item item) async {
     final db = await instance.database;
-
     await db.update(
       _tableName, 
       item.toMap(),
@@ -117,9 +80,8 @@ class DatabaseHelper {
     );
   }
   
-  Future<void> deleteItemByItem(CartItem item) async {
+  Future<void> deleteItemByItem(Item item) async {
     final db = await instance.database;
-
     await db.delete(
       _tableName,
       where: "id = ?",
@@ -129,7 +91,6 @@ class DatabaseHelper {
 
   Future<void> deleteItemById(int id) async {
     final db = await instance.database;
-
     await db.delete(
       _tableName,
       where: "id = ?",

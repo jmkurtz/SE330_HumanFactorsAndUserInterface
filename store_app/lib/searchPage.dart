@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/Helpers/mockData.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 
+import 'Helpers/itemModel.dart';
 import 'cartPage.dart';
 
 class SearchPage extends StatefulWidget {
@@ -13,6 +15,9 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  Widget getTextWidget(List<Item> items){
+    return new Row(children: items.map((item) => new Text(item.itemName)).toList());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +26,18 @@ class _SearchPageState extends State<SearchPage> {
         title: Text(widget.title),
         actions: <Widget>[IconButton(icon: Icon(Icons.shopping_cart), onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(title: 'Shopping Cart')));},),],
       ),
-      body: Center(
-        child: Column(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              for(var item in MockData.items) Image(
+                image: new AssetImage(item.imagePath),
+                height: 300,
+                width: 150,
+              )
+            ],
+          ),
         ),
       ),
       drawer: MenuDrawer()
