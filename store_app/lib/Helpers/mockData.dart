@@ -4,6 +4,8 @@ import 'itemModel.dart';
 
 class MockData{
   static List<Item> items = new List<Item>();
+  static List<int> shoppingCart = new List<int>();
+
   static void seedMockData(){
     items.add(new Item(
       id: 0,
@@ -278,7 +280,7 @@ class MockData{
       genre: 'Drama',
       isUsed: false,
       isVerified: true,
-      imagePath: 'assets/posters/ford_v_ferrari.jpg',
+      imagePath: 'assets/posters/ford_v_ferrari.png',
     ));
 
     items.add(new Item(

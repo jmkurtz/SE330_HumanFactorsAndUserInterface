@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/Helpers/mockData.dart';
+import 'package:store_app/Widgets/itemView.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 
 import 'Helpers/itemModel.dart';
@@ -31,11 +32,7 @@ class _SearchPageState extends State<SearchPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              for(var item in MockData.items) Image(
-                image: new AssetImage(item.imagePath),
-                height: 300,
-                width: 150,
-              )
+              for(var item in MockData.items) new ItemView(item: item, showDescription: true,)
             ],
           ),
         ),
