@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:store_app/Helpers/databaseHelper.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
+import 'package:store_app/Widgets/promoWidget.dart';
 
 import 'Helpers/itemModel.dart';
 import 'billingPage.dart';
@@ -30,6 +31,15 @@ class _CartPageState extends State<CartPage> {
       ),
       body: Column(
         children: [
+          Container(
+            child: PromoView(),
+          ),
+           new Divider(
+            thickness: 1,
+            indent: 20,
+            endIndent: 20,
+            color: Colors.black87,
+          ),
           Container(
             child: RaisedButton(
               onPressed: () {

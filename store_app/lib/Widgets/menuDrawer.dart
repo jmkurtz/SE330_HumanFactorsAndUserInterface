@@ -3,6 +3,7 @@ import 'package:store_app/homepage.dart';
 import 'package:store_app/searchPage.dart';
 import 'package:store_app/sellPage.dart';
 import 'package:store_app/settingsPage.dart';
+//import 'package:store_app/promoPage.dart';
 
 import '../aboutUsPage.dart';
 import '../contactUsPage.dart';
@@ -58,6 +59,15 @@ class _MenuDrawerState extends State<MenuDrawer> {
                 );
               }
             ),
+            // ListTile(
+            //   title: Text('Promotions'),
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => PromoPage(title: 'Promotions')),
+            //     );
+            //   }
+            // ),
             ListTile(
               title: Text('About Us'),
               onTap: () {
