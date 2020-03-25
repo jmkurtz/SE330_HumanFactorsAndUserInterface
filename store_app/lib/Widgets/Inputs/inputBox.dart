@@ -7,11 +7,12 @@ class InputBox extends StatefulWidget {
   final String labelText;
   final String hintText;
   final String errorText;
+  String userInput;
 
   @override
   _InputBoxState createState() => _InputBoxState();
 }
-
+ 
 class _InputBoxState extends State<InputBox> {
   String value;
 
@@ -26,6 +27,9 @@ class _InputBoxState extends State<InputBox> {
           if(value.isEmpty){
             return widget.errorText;
           }
+          setState(() {
+            widget.userInput = value;
+          });
           return null;
         },
         initialValue: value,

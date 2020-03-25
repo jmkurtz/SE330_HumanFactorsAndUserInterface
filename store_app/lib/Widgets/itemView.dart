@@ -108,7 +108,7 @@ class _ItemViewState extends State<ItemView> {
               ),
             ),
           ),
-          new Text('_______________________________________________________'),
+          Divider(thickness: 1,indent: 10,endIndent: 10,),
           new Padding(padding: EdgeInsets.only(bottom: 10),)
         ],
       ),
