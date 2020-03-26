@@ -49,7 +49,12 @@ class _ImageCaptureState extends State<ImageCapture>{
     File selected = await ImagePicker.pickImage(source: source);
 
     setState(() {
-      widget._imageFile = selected;
+      if(widget._imageFile == null){
+        widget._imageFile = new File('asset/posters/used.png');
+      }
+      else{
+        widget._imageFile = selected;
+      }
     });
   }
 
@@ -189,11 +194,7 @@ class _SellPageState extends State<SellPage> {
       builder: (context){
       return AlertDialog(
         title: Text("Success! Your poster is now listed"),
-        content: ItemView(item: movieInstance, showDescription: false),
-        // content: Container(
-        //   height: 500,
-        //   child: ItemView(item: movieInstance, showDescription: false)
-        //   ),
+        content: ItemView(item: movieInstance),
         actions: <Widget>[
           FlatButton(
             child: Text("Submit"),
@@ -339,7 +340,24 @@ class _SellPageState extends State<SellPage> {
                           MockData.items.add(movieInstance);
 
                           // call popup
-                          createAlertDialog(context);
+                          showDialog(
+                            context: context, 
+                            barrierDismissible: false,
+                            builder: (context){
+                            return AlertDialog(
+                              title: Text("Success! Your poster is now listed"),
+                              content: ItemView(item: movieInstance),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text("Submit"),
+                                  onPressed: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Homepage')));
+                                  },
+                                ),
+                              ],
+                              elevation: 24.0,
+                            );
+                          });
                         }                  
                       },
                       label: Text("Publish Listing"),
