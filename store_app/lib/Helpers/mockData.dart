@@ -5,8 +5,20 @@ import 'itemModel.dart';
 class MockData{
   static List<Item> items = new List<Item>();
   static List<int> shoppingCart = new List<int>();
-
+  static List<Item> tempItems = new List<Item>();
+  static void contains(String name){
+    for(var item in items){
+        if(item.itemName.contains(name)){
+          tempItems.add(item);
+        }
+        if(item.genre.contains(name)){
+          tempItems.add(item);
+        }
+    }   
+  }
   static void seedMockData(){
+    //items= new List<Item>();
+    items.clear();
     items.add(new Item(
       id: 0,
       itemName: 'I Still Believe',
@@ -24,7 +36,7 @@ class MockData{
       itemName: 'The Hunt',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Twelve strangers wake up in a clearing. They don\'t know where they are -- or how they got there. In the shadow of a dark internet conspiracy theory, ruthless elitists gather at a remote location to hunt humans for sport. But their master plan is about to be derailed when one of the hunted, Crystal, turns the tables on her pursuers.',
+      description: 'Twelve strangers wake up in a clearing. They don\'t know where they are -- or how they got there. In the shadow of a dark internet conspiracy theory, ruthless elitists gather at a remote location to hunt humans for sport. But their master plan is about to be derailed when one of the hunted, Crystal,Â turns the tables on her pursuers.',
       genre: 'Horror',
       isUsed: false,
       isVerified: true,
@@ -168,7 +180,7 @@ class MockData{
       itemName: 'Spies in Disguise',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Super spy Lance Sterling and scientist Walter Beckett are almost exact opposites. Lance is smooth, suave and debonair. Walter is not. But what Walter lacks in social skills he makes up for in smarts and invention, creating the awesome gadgets Lance uses on his epic missions. But when events take an unexpected turn, Walter and Lance suddenly have to rely on each other in a whole new way. And if this odd couple can\'t learn to work as a team, the whole world is in peril.',
+      description: 'Super spy Lance Sterling and scientist Walter Beckett are almost exact opposites. Lance is smooth, suave and debonair. Walter is not. But what Walter lacks in social skills he makes up for in smarts and invention, creating the awesome gadgets Lance uses on his epic missions. But when events take anÂ unexpected turn, Walter and Lance suddenly have to rely on each other in a whole new way. And if this odd couple can\'t learn to work as a team, the whole world is in peril.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -252,7 +264,7 @@ class MockData{
       itemName: 'Frozen II',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Elsa the Snow Queen has an extraordinary gift -- the power to create ice and snow. But no matter how happy she is to be surrounded by the people of Arendelle, Elsa finds herself strangely unsettled. After hearing a mysterious voice call out to her, Elsa travels to the enchanted forests and dark seas beyond her kingdom -- an adventure that soon turns into a journey of self-discovery.',
+      description: 'Elsa the Snow Queen has an extraordinary gift -- the power to create ice and snow. But no matter how happy she is to be surrounded by the people of Arendelle, Elsa finds herself strangely unsettled. After hearing a mysterious voice call out to her, Elsa travels to the enchanted forests and dark seasÂ beyond her kingdom -- an adventure that soon turns into a journey of self-discovery.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -276,7 +288,7 @@ class MockData{
       itemName: 'Ford v. Ferrari',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'American automotive designer Carroll Shelby and fearless British race car driver Ken Miles battle corporate interference, the laws of physics and their own personal demons to build a revolutionary vehicle for the Ford Motor Co. Together, they plan to compete against the race cars of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.',
+      description: 'American automotive designer Carroll Shelby and fearless British race car driver Ken Miles battle corporate interference, the laws of physics and their own personal demons to build a revolutionary vehicle for the Ford Motor Co. Together, they plan to compete against the race cars of Enzo Ferrari atÂ the 24 Hours of Le Mans in France in 1966.',
       genre: 'Drama',
       isUsed: false,
       isVerified: true,
@@ -288,7 +300,7 @@ class MockData{
       itemName: 'Midway',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'On Dec. 7, 1941, Japanese forces launch a devastating attack on Pearl Harbor, the U.S. naval base in Hawaii. Six months later, the Battle of Midway commences on June 4, 1942, as the Japanese navy once again plans a strike against American ships in the Pacific. For the next three days, the U.S. Navy and a squad of brave fighter pilots engage the enemy in one of the most important and decisive battles of World War II.',
+      description: 'On Dec. 7, 1941, Japanese forces launch a devastating attack on Pearl Harbor, the U.S. naval base in Hawaii. Six months later, the Battle of Midway commences on June 4, 1942, as the Japanese navy once again plans a strike against American ships in the Pacific. For the next three days, the U.S. NavyÂ and a squad of brave fighter pilots engage the enemy in one of the most important and decisive battles of World War II.',
       genre: 'Action',
       isUsed: false,
       isVerified: true,
@@ -312,7 +324,7 @@ class MockData{
       itemName: 'Joker',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he\'s part of the world around him. Isolated, bullied and disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.',
+      description: 'Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he\'s part of the world around him. Isolated, bullied andÂ disregarded by society, Fleck begins a slow descent into madness as he transforms into the criminal mastermind known as the Joker.',
       genre: 'Drama',
       isUsed: false,
       isVerified: true,
@@ -324,7 +336,7 @@ class MockData{
       itemName: 'It: Chapter Two',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Defeated by members of the Losers\' Club, the evil clown Pennywise returns 27 years later to terrorize the town of Derry, Maine, once again. Now adults, the childhood friends have long since gone their separate ways. But when people start disappearing, Mike Hanlon calls the others home for one final stand. Damaged by scars from the past, the united Losers must conquer their deepest fears to destroy the shape-shifting Pennywise -- now more powerful than ever.',
+      description: 'Defeated by members of the Losers\' Club, the evil clown Pennywise returns 27 years later to terrorize the town of Derry, Maine, once again. Now adults, the childhood friends have long since gone their separate ways. But when people start disappearing, Mike Hanlon calls the others home for one finalÂ stand. Damaged by scars from the past, the united Losers must conquer their deepest fears to destroy the shape-shifting Pennywise -- now more powerful than ever.',
       genre: 'Horror',
       isUsed: false,
       isVerified: true,
@@ -348,7 +360,7 @@ class MockData{
       itemName: 'The Lion King',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny on the plains of Africa. But not everyone in the kingdom celebrates the new cub\'s arrival. Scar, Mufasa\'s brother -- and former heir to the throne -- has plans of his own. The battle for Pride Rock is soon ravaged with betrayal, tragedy and drama, ultimately resulting in Simba\'s exile. Now, with help from a curious pair of newfound friends, Simba must figure out how to grow up and take back what is rightfully his.',
+      description: 'Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny on the plains of Africa. But not everyone in the kingdom celebrates the new cub\'s arrival. Scar, Mufasa\'s brother -- and former heir to the throne -- has plans of his own. The battle for Pride Rock is soon ravaged withÂ betrayal, tragedy and drama, ultimately resulting in Simba\'s exile. Now, with help from a curious pair of newfound friends, Simba must figure out how to grow up and take back what is rightfully his.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -372,7 +384,7 @@ class MockData{
       itemName: 'Back to the Future',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Back to the Future is a 1985 American science fiction film directed by Robert Zemeckis and written by Zemeckis and Bob Gale. It stars Michael J. Fox as teenager Marty McFly, who accidentally travels back in time from 1985 to 1955, where he meets his future parents and becomes his mother\'s romantic interest.',
+      description: 'Back to the FutureÂ is a 1985 American science fictionÂ filmÂ directed by Robert Zemeckis and written by Zemeckis and Bob Gale. It stars Michael J. Fox as teenager Marty McFly, who accidentally travelsÂ backÂ in time from 1985 to 1955, where he meets hisÂ futureÂ parents and becomes his mother\'s romantic interest.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -396,7 +408,7 @@ class MockData{
       itemName: 'Star Wars: The Empire Strikes Back',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'The adventure continues in this "Star Wars" sequel. Luke Skywalker (Mark Hamill), Han Solo (Harrison Ford), Princess Leia (Carrie Fisher) and Chewbacca (Peter Mayhew) face attack by the Imperial forces and its AT-AT walkers on the ice planet Hoth. While Han and Leia escape in the Millennium Falcon, Luke travels to Dagobah in search of Yoda. Only with the Jedi master\'s help will Luke survive when the dark side of the Force beckons him into the ultimate duel with Darth Vader (David Prowse).',
+      description: 'The adventure continues in this "Star Wars" sequel. Luke Skywalker (Mark Hamill), Han Solo (Harrison Ford), Princess Leia (Carrie Fisher) and Chewbacca (Peter Mayhew) face attack by the Imperial forces and its AT-AT walkers on the ice planet Hoth. While Han and Leia escape in the Millennium Falcon,Â Luke travels to Dagobah in search of Yoda. Only with the Jedi master\'s help will Luke survive when the dark side of the Force beckons him into the ultimate duel with Darth Vader (David Prowse).',
       genre: 'Action',
       isUsed: false,
       isVerified: true,
@@ -444,7 +456,7 @@ class MockData{
       itemName: 'Indiana Jones Temple of Doom',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Adventure sequel. Intrepid archaeologist Indiana Jones, on the trail of fortune and glory in Old Shanghai, is ricocheted into a dangerous adventure in India. With his faithful companion Short Round and nightclub singer Willie Scott, Indie goes in search of the magical Sankara stone, and uncovers an ancient evil which threatens all who come into contact with it.',
+      description: 'Adventure sequel. Intrepid archaeologist Indiana Jones, on the trail of fortune and glory in Old Shanghai, is ricocheted into a dangerous adventure in India. With his faithful companion Short Round and nightclub singer Willie Scott, Indie goes in search of the magical Sankara stone, and uncovers anÂ ancient evil which threatens all who come into contact with it.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -480,7 +492,7 @@ class MockData{
       itemName: 'The Big Labowski',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Jeff `The Dude\' Leboswki is mistaken for Jeffrey Lebowski, who is The Big Lebowski. Which explains why he\'s roughed up and has his precious rug peed on. In search of recompense, The Dude tracks down his namesake, who offers him a job. His wife has been kidnapped and he needs a reliable bagman. Aided and hindered by his pals Walter Sobchak, a Vietnam vet, and Donny, master of stupidity.',
+      description: 'Jeff `The Dude\' Leboswki is mistaken for Jeffrey Lebowski, who is The Big Lebowski. Which explains why he\'s roughed up and has his precious rug peed on. In search of recompense, The Dude tracks down his namesake, who offers him a job. His wife has been kidnapped and he needs a reliable bagman. AidedÂ and hindered by his pals Walter Sobchak, a Vietnam vet, and Donny, master of stupidity.',
       genre: 'Comedy',
       isUsed: false,
       isVerified: true,
@@ -528,7 +540,7 @@ class MockData{
       itemName: 'Star Trek II: Wrath of Khan',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'As Adm. James T. Kirk (William Shatner) and Capt. Spock (Leonard Nimoy) monitor trainees at Starfleet Academy, another vessel from the United Federation of Planets is about to try out the planet-creating Genesis Device in a seemingly deserted portion of space. In the process, two of Kirk\'s officers are captured by Khan (Ricardo Montalban), an enemy Kirk thought he\'d never see again. Once more, Kirk takes the Enterprise\'s helm, where he meets Khan\'s ship in an intergalactic showdown.',
+      description: 'As Adm. James T. Kirk (William Shatner) and Capt. Spock (Leonard Nimoy) monitor trainees at Starfleet Academy, another vessel from the United Federation of Planets is about to try out the planet-creating Genesis Device in a seemingly deserted portion of space. In the process, two of Kirk\'s officersÂ are captured by Khan (Ricardo Montalban), an enemy Kirk thought he\'d never see again. Once more, Kirk takes the Enterprise\'s helm, where he meets Khan\'s ship in an intergalactic showdown.',
       genre: 'Action',
       isUsed: false,
       isVerified: true,
@@ -660,7 +672,7 @@ class MockData{
       itemName: 'Top Gun',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'The Top Gun Naval Fighter Weapons School is where the best of the best train to refine their elite flying skills. When hotshot fighter pilot Maverick (Tom Cruise) is sent to the school, his reckless attitude and cocky demeanor put him at odds with the other pilots, especially the cool and collected Iceman (Val Kilmer). But Maverick isn\t only competing to be the top fighter pilot, he\'s also fighting for the attention of his beautiful flight instructor, Charlotte Blackwood (Kelly McGillis).',
+      description: 'The Top Gun Naval Fighter Weapons School is where the best of the best train to refine their elite flying skills. When hotshot fighter pilot Maverick (Tom Cruise) is sent to the school, his reckless attitude and cocky demeanor put him at odds with the other pilots, especially the cool and collectedÂ Iceman (Val Kilmer). But Maverick isn\t only competing to be the top fighter pilot, he\'s also fighting for the attention of his beautiful flight instructor, Charlotte Blackwood (Kelly McGillis).',
       genre: 'Action',
       isUsed: false,
       isVerified: true,
@@ -672,7 +684,7 @@ class MockData{
       itemName: 'Ghostbusters',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'After the members of a team of scientists (Harold Ramis, Dan Aykroyd, Bill Murray) lose their cushy positions at a university in New York City, they decide to become "ghostbusters" to wage a high-tech battle with the supernatural for money. They stumble upon a gateway to another dimension, a doorway that will release evil upon the city. The Ghostbusters must now save New York from complete destruction.',
+      description: 'After the members of a team of scientists (Harold Ramis, Dan Aykroyd, Bill Murray) lose their cushy positions at a university in New York City, they decide to become "ghostbusters" to wage a high-tech battle with the supernatural for money. They stumble upon a gateway to another dimension, a doorwayÂ that will release evil upon the city. The Ghostbusters must now save New York from complete destruction.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -696,7 +708,7 @@ class MockData{
       itemName: 'The Princess Bride',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'A fairy tale adventure about a beautiful young woman and her one true love. He must find her after a long separation and save her. They must battle the evils of the mythical kingdom of Florin to be reunited with each other. Based on the William Goldman novel "The Princess Bride" which earned its own loyal audience.',
+      description: 'A fairy tale adventure about a beautiful young woman and her one true love. He must find her after a long separation and save her. They must battle the evils of the mythical kingdom of Florin to be reunited with each other. Based on the William Goldman novel "The Princess Bride" which earned its ownÂ loyal audience.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -708,7 +720,7 @@ class MockData{
       itemName: 'The Karate Kid',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Daniel (Ralph Macchio) moves to Southern California with his mother, Lucille (Randee Heller), but quickly finds himself the target of a group of bullies who study karate at the Cobra Kai dojo. Fortunately, Daniel befriends Mr. Miyagi (Noriyuki "Pat" Morita), an unassuming repairman who just happens to be a martial arts master himself. Miyagi takes Daniel under his wing, training him in a more compassionate form of karate and preparing him to compete against the brutal Cobra Kai.',
+      description: 'Daniel (Ralph Macchio) moves to Southern California with his mother, Lucille (Randee Heller), but quickly finds himself the target of a group of bullies who study karate at the Cobra Kai dojo. Fortunately, Daniel befriends Mr. Miyagi (Noriyuki "Pat" Morita), an unassuming repairman who just happensÂ to be a martial arts master himself. Miyagi takes Daniel under his wing, training him in a more compassionate form of karate and preparing him to compete against the brutal Cobra Kai.',
       genre: 'Drama',
       isUsed: false,
       isVerified: true,
@@ -816,7 +828,7 @@ class MockData{
       itemName: 'Avatar',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'On the lush alien world of Pandora live the Na\'vi, beings who appear primitive but are highly evolved. Because the planet\'s environment is poisonous, human/Na\'vi hybrids, called Avatars, must link to human minds to allow for free movement on Pandora. Jake Sully (Sam Worthington), a paralyzed former Marine, becomes mobile again through one such Avatar and falls in love with a Na\'vi woman (Zoe Saldana). As a bond with her grows, he is drawn into a battle for the survival of her world.',
+      description: 'On the lush alien world of Pandora live the Na\'vi, beings who appear primitive but are highly evolved. Because the planet\'s environment is poisonous, human/Na\'vi hybrids, called Avatars, must link to human minds to allow for free movement on Pandora. Jake Sully (Sam Worthington), a paralyzed formerÂ Marine, becomes mobile again through one such Avatar and falls in love with a Na\'vi woman (Zoe Saldana). As a bond with her grows, he is drawn into a battle for the survival of her world.',
       genre: 'Adventure',
       isUsed: false,
       isVerified: true,
@@ -828,7 +840,7 @@ class MockData{
       itemName: 'Iron Man',
       unitPrice: 10.99,
       quantity: Random().nextInt(20),
-      description: 'Iron Man is a 2008 American superhero film based on the Marvel Comics character of the same name. ... In Iron Man, Tony Stark is an industrialist and master engineer who builds a mechanized suit of armor and becomes the superhero Iron Man.',
+      description: 'Iron ManÂ is a 2008 American superhero film based on the Marvel Comics character of the same name. ... InÂ Iron Man, Tony Stark is an industrialist and master engineer who builds a mechanized suit of armor and becomes the superheroÂ Iron Man.',
       genre: 'Action',
       isUsed: false,
       isVerified: true,
@@ -846,5 +858,7 @@ class MockData{
       isVerified: true,
       imagePath: 'assets/posters/pirates_of_the_caribbean.png',
     ));
+   items.sort((a,b)=> a.itemName.compareTo(b.itemName));
+   
   }
 }

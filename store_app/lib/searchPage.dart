@@ -19,20 +19,45 @@ class _SearchPageState extends State<SearchPage> {
   Widget getTextWidget(List<Item> items){
     return new Row(children: items.map((item) => new Text(item.itemName)).toList());
   }
-
+   Icon cusIcon = Icon(Icons.search);
+   Widget cusBarTitle= Text("");
+  
   @override
   Widget build(BuildContext context) {
+    this.cusBarTitle = Text(widget.title);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[IconButton(icon: Icon(Icons.shopping_cart), onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(title: 'Shopping Cart')));},),],
+        title: cusBarTitle,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: (){
+              showSearch(context: context, delegate: DataSearch());
+             
+            },
+            ),
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () { 
+              Navigator.push(
+                context, MaterialPageRoute(
+                  builder: (context) => CartPage(title: 'Shopping Cart'))
+                  );
+            },
+          ),
+        ], 
+      
+
+        
       ),
+             
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               for(var item in MockData.items) new ItemView(item: item, showDescription: true,)
+              
             ],
           ),
         ),
@@ -40,4 +65,77 @@ class _SearchPageState extends State<SearchPage> {
       drawer: MenuDrawer()
     );
   }
+}
+
+class DataSearch extends SearchDelegate<String>{
+  var selectedItem= new Item();
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    
+    return [IconButton(icon: Icon(Icons.clear), onPressed: (){
+      query="";
+    })];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    
+    
+        return IconButton(
+          icon: AnimatedIcon(icon: AnimatedIcons.menu_arrow, progress: transitionAnimation
+          ),
+          onPressed: (){
+            close(context, null);
+          },
+      );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    
+    return Scaffold(       
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+               new ItemView(item: selectedItem, showDescription: true,)
+              
+            ],
+          ),
+        ),
+      ),
+      drawer: MenuDrawer()
+    );
+  }
+  @override
+  Widget buildSuggestions(BuildContext context) {
+      var suggestionList = query.isEmpty
+      ? MockData.tempItems
+      : MockData.items.where((p)=>p.itemName.startsWith(query)).toList();
+    return ListView.builder(itemBuilder: (context,index)=> ListTile(
+      onTap: (){
+        selectedItem=suggestionList[index];
+        showResults(context);
+        
+      }, 
+      title: RichText(
+        text: TextSpan(
+          
+          text: suggestionList[index].itemName.substring(0,query.length),
+          style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold),
+          children: [TextSpan(
+            
+            text: suggestionList[index].itemName.substring(query.length),
+            style: TextStyle(color: Colors.grey))]
+          )
+        ),
+      
+      ),
+      
+      itemCount: suggestionList.length,
+    );
+  }
+  
 }

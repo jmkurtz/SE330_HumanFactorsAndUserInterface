@@ -4,7 +4,7 @@ import 'package:store_app/Widgets/menuDrawer.dart';
 import 'package:store_app/searchPage.dart';
 
 import 'Widgets/itemView.dart';
-import 'Widgets/newItemAdded.dart';
+//import 'Widgets/newItemAdded.dart';
 import 'aboutUsPage.dart';
 import 'cartPage.dart';
 
