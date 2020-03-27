@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/Helpers/mockData.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
 import 'package:store_app/searchPage.dart';
-
 import 'Widgets/itemView.dart';
-import 'Widgets/newItemAdded.dart';
 import 'aboutUsPage.dart';
 import 'cartPage.dart';
 
@@ -42,24 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               new Padding(padding: EdgeInsets.only(top: 15),),
               new RaisedButton(
-                onPressed: () => {
-                  showDialog(
-                    context: context, 
-                    barrierDismissible: false,
-                    builder: (context){
-                    return AlertDialog(
-                      title: Text("Success! Your poster is now listed"),
-                      content: ItemView(item: MockData.items[0]),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text("Submit Updated"),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ],
-                      elevation: 24.0,
-                    );
-                  })
-                },//Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage(title: 'Search'))),
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage(title: 'Search'))),
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 child: new Row(
