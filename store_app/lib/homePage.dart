@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               new GestureDetector(
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUsPage(title: 'About Us'))),
-                child: new Image(image: new AssetImage('assets/images/movieLogo.png'),),
+                child: new Image(image: new AssetImage('assets/images/movieLogo.PNG'),),
               ),
               new Padding(padding: EdgeInsets.only(top: 15),),
               new RaisedButton(

@@ -35,7 +35,7 @@ class DatabaseHelper {
 
   Future onDbCreate(Database db, int version) async {
     return db.execute(
-      "CREATE TABLE $_tableName(id INTEGER PRIMARY KEY AUTOINCREMENT, itemName TEXT NOT NULL, unitPrice REAL NOT NULL, quantity INT NOT NULL, imagePath TEXT)",
+      "CREATE TABLE $_tableName(id INTEGER PRIMARY KEY AUTOINCREMENT, itemName TEXT NOT NULL, unitPrice REAL NOT NULL, quantity INT NOT NULL, description TEXT, genre TEXT, isUsed TEXT, isVerified TEXT, imagePath TEXT)",
     );
   }
 
@@ -62,8 +62,8 @@ class DatabaseHelper {
           quantity: items[i]['quantity'],
           description: items[i]['description'],
           genre: items[i]['genre'],
-          isUsed: items[i]['isUsed'],
-          isVerified: items[i]['isVerified'],
+          isUsed: false,
+          isVerified: true,
           imagePath: items[i]['imagePath'],
         );
       }

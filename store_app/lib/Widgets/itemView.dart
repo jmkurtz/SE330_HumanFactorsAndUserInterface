@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/Helpers/itemModel.dart';
 import 'package:store_app/Helpers/mockData.dart';
+import 'package:store_app/Helpers/databaseHelper.dart';
 
 class ItemView extends StatefulWidget {
   ItemView({Key key, @required this.item, this.showDescription = false}) : super(key: key);
@@ -52,6 +53,20 @@ class _ItemViewState extends State<ItemView> {
                 new FlatButton(
                   onPressed: () {
                     MockData.shoppingCart.add(widget.item.id);
+                    var database = DatabaseHelper();
+                    var inItem = new Item(
+                      itemName: widget.item.itemName,
+                      unitPrice: widget.item.unitPrice,
+                      quantity: 1,
+                      description: widget.item.description,
+                      genre: widget.item.genre,
+                      isVerified: true,
+                      isUsed: widget.item.isUsed,
+                      imagePath: widget.item.imagePath,
+                    );
+
+                    database.insertItem(inItem);
+
                     Navigator.of(context).pop();
                   },
                   textColor: Theme.of(context).primaryColor,

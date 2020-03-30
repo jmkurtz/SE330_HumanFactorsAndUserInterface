@@ -26,7 +26,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
               child: Text(''),
               decoration: BoxDecoration(
                 image: new DecorationImage(
-                  image: new AssetImage('assets/images/movieLogo.png'),
+                  image: new AssetImage('assets/images/movieLogo.PNG'),
                   fit: BoxFit.cover,
                 ),
                 color: Colors.green,

@@ -26,7 +26,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
             children: <Widget>[
               Container( // Main image
                 child: Image(
-                  image: new AssetImage('assets/images/movieLogo.png'),
+                  image: new AssetImage('assets/images/movieLogo.PNG'),
                   fit: BoxFit.scaleDown,
                 ),
                 padding: EdgeInsets.fromLTRB(20, 30, 20, 80),
