@@ -20,7 +20,7 @@ class BillingPage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  final String totalPrice;
+  final double totalPrice;
 
   @override
   _BillingPageState createState() => _BillingPageState();
@@ -30,6 +30,7 @@ class _BillingPageState extends State<BillingPage> {
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
+    String price = widget.totalPrice.toStringAsFixed(2);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title)
@@ -48,7 +49,7 @@ class _BillingPageState extends State<BillingPage> {
                       '___________________________________________________', textAlign: TextAlign.center,),),
                   new Padding(padding: EdgeInsets.only(top: 5),),
                   new Container( width: 325, child: new Text(
-                      'Your total is ${widget.totalPrice}',  textAlign: TextAlign.center,),),
+                      'Your total is \$${price}',  textAlign: TextAlign.center,),),
                   new Container( width: 325, child: new Text(
                       'Please enter your billing information',  textAlign: TextAlign.center,),),
                   new Container( width: 325, child: new Text(
