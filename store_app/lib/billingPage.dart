@@ -102,7 +102,7 @@ class _BillingPageState extends State<BillingPage> {
                     child: RaisedButton(
                       onPressed:() async{
                         if(_formKey.currentState.validate()){
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => ShippingPage(title: 'Shipping', totalPrice: '\$10.23',)),);
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => ShippingPage(title: 'Shipping', totalPrice: '\$${price}',)),);
                         }
                       },
                       color: Theme.of(context).primaryColor,

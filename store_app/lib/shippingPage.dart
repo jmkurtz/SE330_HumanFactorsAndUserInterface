@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:store_app/Widgets/menuDrawer.dart';
+import 'package:store_app/Helpers/databaseHelper.dart';
 
 import 'Helpers/notificationHelper.dart';
 import 'Widgets/Inputs/descriptionBox.dart';
@@ -31,6 +32,8 @@ class ShippingPage extends StatefulWidget {
 class _ShippingPageState extends State<ShippingPage> {
   final notifications = FlutterLocalNotificationsPlugin();
   final notificationsHelper = NotificationsHelper();
+
+  var database = DatabaseHelper();
     
   @override
   void initState() {
@@ -117,6 +120,7 @@ class _ShippingPageState extends State<ShippingPage> {
                     child: RaisedButton(
                       onPressed: () {
                         if(_formKey.currentState.validate()){
+                          emptyCart();
                           notificationsHelper.showOngoingNotification(notifications, title: 'Purchase Confirmation', body: 'Your purchase total is ${widget.totalPrice}.');
                           Navigator.push(context,
                             MaterialPageRoute(builder: (context) => ConfirmationPage(title: 'Confirmation')),
@@ -135,5 +139,13 @@ class _ShippingPageState extends State<ShippingPage> {
       ),
       drawer: MenuDrawer()
     );
+  }
+
+  Future<void> emptyCart() async {
+    var cart = await database.getCartItems();
+
+    for (int i=0; i < cart.length; i++) {
+      database.deleteItemByItem(cart[i]);
+    }
   }
 }
