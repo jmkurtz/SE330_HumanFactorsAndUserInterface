@@ -115,7 +115,7 @@ class _ItemViewState extends State<ItemView> {
                           ),
                         ),
                         new Text('Genre: ' + widget.item.genre),
-                        new Text('Price: ' + widget.item.unitPrice.toString()),
+                        new Text('Price: \$' + widget.item.unitPrice.toString()),
                       ],
                     ),
                   )

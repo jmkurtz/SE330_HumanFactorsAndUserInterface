@@ -15,9 +15,6 @@ class ConfirmationPage extends StatefulWidget {
 }
 
 class _ConfirmationPageState extends State<ConfirmationPage> {
-
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +35,11 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
             RaisedButton(
               child: Text('Home'),
               onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Homepage'))),
-            )
+            ),
+            Container(
+              child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+            ),
           ]
         ),
       ),

@@ -110,6 +110,10 @@ class _BillingPageState extends State<BillingPage> {
                       child: Text('Next'),
                     ),
                   ),
+                  Container(
+                    child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                  ),
                 ],
               ),
             ),

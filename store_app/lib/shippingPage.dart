@@ -132,6 +132,10 @@ class _ShippingPageState extends State<ShippingPage> {
                       child: Text('Confirm'),
                     ),
                   ),
+                  Container(
+                    child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                  ),
                 ],
               ),
             ),

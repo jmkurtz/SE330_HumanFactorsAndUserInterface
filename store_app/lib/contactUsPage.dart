@@ -83,6 +83,10 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       child: Text('Submit'),
                     ),
                   ),
+                  Container(
+                    child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                  ),
                 ],
               ),
             ),

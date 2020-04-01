@@ -65,6 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: new Text('More')
               ),
               new Padding(padding: EdgeInsets.only(top: 45),),
+              Container(
+                child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+              ),
             ],
           ),
         ),

@@ -46,18 +46,17 @@ class _SearchPageState extends State<SearchPage> {
             },
           ),
         ], 
-      
-
-        
-      ),
-             
+      ),  
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              for(var item in MockData.items) new ItemView(item: item, showDescription: true,)
-              
+              for(var item in MockData.items) new ItemView(item: item, showDescription: true,),
+              Container(
+                child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+              ),
             ],
           ),
         ),
@@ -99,7 +98,14 @@ class DataSearch extends SearchDelegate<String>{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-               new ItemView(item: selectedItem, showDescription: true,)
+               if(selectedItem.imagePath == null)
+                  new Column(
+                    children: <Widget>[
+                      new Padding(padding: EdgeInsets.only(top: 30),),
+                      Text("Does not exist"),
+                    ])
+               else
+                  new ItemView(item: selectedItem, showDescription: true,)
               
             ],
           ),
@@ -112,12 +118,11 @@ class DataSearch extends SearchDelegate<String>{
   Widget buildSuggestions(BuildContext context) {
       var suggestionList = query.isEmpty
       ? MockData.tempItems
-      : MockData.items.where((p)=>p.itemName.startsWith(query)).toList();
+      : MockData.items.where((p)=>p.itemName.toLowerCase().startsWith(query.toLowerCase())).toList();
     return ListView.builder(itemBuilder: (context,index)=> ListTile(
       onTap: (){
-        selectedItem=suggestionList[index];
+        selectedItem = suggestionList.isEmpty ? null : suggestionList[index];
         showResults(context);
-        
       }, 
       title: RichText(
         text: TextSpan(

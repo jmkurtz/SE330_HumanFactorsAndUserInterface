@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:store_app/Widgets/menuDrawer.dart';
-import 'package:store_app/Widgets/itemView.dart';
 import 'package:store_app/Helpers/priceValidator.dart';
 import 'package:store_app/Helpers/mockData.dart';
 import 'package:store_app/Helpers/itemModel.dart';
@@ -41,20 +41,11 @@ class ImageCapture extends StatefulWidget {
 
 class _ImageCaptureState extends State<ImageCapture>{
 
-  /// Active image file
-  //File _imageFile;
-
-  /// Select an image via gallery or camera
   Future<void> _pickImage(ImageSource source) async {
     File selected = await ImagePicker.pickImage(source: source);
 
     setState(() {
-      if(widget._imageFile == null){
-        widget._imageFile = new File('asset/posters/used.png');
-      }
-      else{
-        widget._imageFile = selected;
-      }
+      widget._imageFile = selected;
     });
   }
 
@@ -86,7 +77,7 @@ class _ImageCaptureState extends State<ImageCapture>{
               if(widget._imageFile != null) ...[
                 Container(
                   child: Image.file(widget._imageFile),
-                  ),
+                ),
                 Column(
                   children: <Widget>[
                     Row(
@@ -165,6 +156,7 @@ class _SellPageState extends State<SellPage> {
   var priceInput =  InputValidationPage(
                                   title: 'Price',
                                   inputDecoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.attach_money),
                                     labelText: "Price", 
                                     hintText: '\$0.00', 
                                     fillColor: Colors.white,
@@ -187,27 +179,27 @@ class _SellPageState extends State<SellPage> {
                             width: 325
                           );
 
-  createAlertDialog(BuildContext context){
-    return showDialog(
-      context: context, 
-      barrierDismissible: false,
-      builder: (context){
-      return AlertDialog(
-        title: Text("Success! Your poster is now listed"),
-        content: ItemView(item: movieInstance),
-        actions: <Widget>[
-          FlatButton(
-            child: Text("Submit"),
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Homepage')));
-            },
-          ),
-        ],
-        elevation: 24.0,
-      );
-    });
-  }
-
+  // createAlertDialog(BuildContext context){
+  //   return showDialog(
+  //     context: context, 
+  //     barrierDismissible: false,
+  //     builder: (context){
+  //     return AlertDialog(
+  //       title: Text("Success! Your poster is now listed"),
+  //       content: ItemView(item: movieInstance),
+  //       actions: <Widget>[
+  //         FlatButton(
+  //           child: Text("Submit"),
+  //           onPressed: (){
+  //             Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Homepage')));
+  //           },
+  //         ),
+  //       ],
+  //       elevation: 24.0,
+  //     );
+  //   });
+  // }
+  
   _onSubmit() {
     if(_formKey.currentState.validate()){
       _formKey.currentState.save();
@@ -227,18 +219,18 @@ class _SellPageState extends State<SellPage> {
       ),
       body: 
         SingleChildScrollView(
-          //padding: EdgeInsets.symmetric(vertical: 30),
+          padding: EdgeInsets.symmetric(vertical: 30),
           child: Center(
             child: Column(
               children: <Widget>[
                 Container(
                   height: 50,
                   padding: EdgeInsets.all(10),
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.center,
                   child: Text.rich(
                     TextSpan(
                       text: "Enter poster information",
-                      style: TextStyle(fontWeight: FontWeight.bold)
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)
                     )
                   ),
                 ),
@@ -260,9 +252,8 @@ class _SellPageState extends State<SellPage> {
                         ),
                         Padding(padding: EdgeInsets.only(top: 30)),
                         Container(
-                          //alignment: Alignment.topCenter,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
                                 height: 70,
@@ -270,14 +261,8 @@ class _SellPageState extends State<SellPage> {
                                 child: priceInput,
                               ),
                               Container(
-                                //height: 70,
                                 alignment: Alignment.topCenter,
                                 width: 225,
-                                //padding: EdgeInsets.only(right: 5),
-                                decoration: BoxDecoration(
-                                  border: new Border.all(width: 1,color: Colors.grey, style: BorderStyle.solid),
-                                  borderRadius: new BorderRadius.circular(25.0),
-                                  ),
                                 child: DropdownButton<String>(
                                   value: _currentDropdownItem,
                                   onChanged: (String newValue){
@@ -320,7 +305,7 @@ class _SellPageState extends State<SellPage> {
                     new FloatingActionButton.extended(
                       heroTag: "SubmitForm",
                       onPressed: () {
-                        _onSubmit();      
+                        _onSubmit();   
 
                         if(isValid){
                           //Create new movie item
@@ -328,14 +313,13 @@ class _SellPageState extends State<SellPage> {
                             description: descriptionInput.userInput,
                             genre: _currentDropdownItem,
                             id: MockData.items.length + 1,
-                            imagePath: imageWidget._imageFile.path,
+                            imagePath: imageWidget._imageFile.path ?? 'assets/posters/used.PNG', //'assets/posters/usedPic' + (MockData.items.length + 1).toString() + '.png' ?? 'assets/posters/used.PNG',
                             isUsed: true,
                             isVerified: false,
                             itemName: titleInput.userInput,
                             quantity: 1,
                             unitPrice: priceInput.userInput,
                           );
-
                           // Add it to the list of movies
                           MockData.items.add(movieInstance);
 
@@ -346,7 +330,32 @@ class _SellPageState extends State<SellPage> {
                             builder: (context){
                             return AlertDialog(
                               title: Text("Success! Your poster is now listed"),
-                              content: ItemView(item: movieInstance),
+                              content: new SingleChildScrollView(
+                                child: new Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    new Center(
+                                        child: Text(movieInstance.itemName, 
+                                        style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                                      )
+                                    ),
+                                    new Container(
+                                      padding: EdgeInsets.all(8),
+                                      child: new Image(
+                                        image: new AssetImage(movieInstance.imagePath),
+                                        height: 300,
+                                        width: 150,
+                                      ),
+                                    ),
+                                    new Text('\$' + movieInstance.unitPrice.toString(),
+                                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                                    new Text(movieInstance.description),
+                                    new Text('Genre: ' + movieInstance.genre),
+                                    new Text('Condition: ' + (movieInstance.isUsed ? 'Used' : 'New'))
+                                  ],
+                                )
+                              ),
                               actions: <Widget>[
                                 FlatButton(
                                   child: Text("Submit"),
@@ -364,7 +373,10 @@ class _SellPageState extends State<SellPage> {
                       icon: Icon(Icons.file_upload),
                     ),
                 ),
-
+                Container(
+                  child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                ),
               ],
             )
           ),

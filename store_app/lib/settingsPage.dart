@@ -67,6 +67,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 ]
               ),
             ),
+            Container(
+              child: Text("Copyright 2020 - Movie Poster Unlimited", style: TextStyle(fontSize: 14, color: Colors.grey),),
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+            ),
           ]
         ),
       ),

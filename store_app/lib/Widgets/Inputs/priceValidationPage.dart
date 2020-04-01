@@ -5,7 +5,7 @@ import 'package:store_app/Helpers/priceValidator.dart';
 class InputValidationPage extends StatefulWidget {
   InputValidationPage({
     @required this.title,
-   // @required this.valKey,
+     // @required this.valKey,
     this.inputDecoration = const InputDecoration(),
     this.textFieldStyle,
     this.textAlign = TextAlign.start,
@@ -25,6 +25,8 @@ class InputValidationPage extends StatefulWidget {
   final TextInputFormatter inputFormatter;
   final StringValidator submitValidator;
   final ValueChanged<String> onSubmit;
+  
+  String finalInput = "\$0.00";
   double userInput = 0;
 
   @override
@@ -40,7 +42,6 @@ class _InputValidationPageState extends State<InputValidationPage> {
     if (valid) {
       _focusNode.unfocus();
     } else {
-      //widget.valKey.currentState.
       FocusScope.of(context).requestFocus(_focusNode);
     }
   }
@@ -69,6 +70,23 @@ class _InputValidationPageState extends State<InputValidationPage> {
         }
         setState(() {
           widget.userInput = double.parse(value);
+          if(value.contains('.'))
+          {
+            var newval = value.split('.');
+            if(newval.length <= 1){
+              widget.userInput = double.parse(newval.first + '.00');
+            }
+            else{
+              if(newval.last.length <= 2){
+                if(newval.last.length <= 1)
+                  newval.last += '00';
+                else
+                  newval.last += '0';
+              }
+              widget.userInput = double.parse(newval.first + '.' + newval.last);
+            }
+            
+          }
         });
         return null;
       },
